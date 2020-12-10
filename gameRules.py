@@ -10,9 +10,9 @@ que reste a faire :
 """
 
 from module import addLettre, printGuesWord
-from score import addScore
 
-def valideLettre(lettre):
+
+def valideLettre(lettre,dico):
     """
     Verifie que le parametre est bien une lettre seul.
     Return1 : la lettre en majuscule 
@@ -21,12 +21,14 @@ def valideLettre(lettre):
 
     
     if len(lettre) > 1 or len(lettre) < 1:
+        dico["message"] = "lettre invalide"
         return( False )
     
     lettre = lettre.capitalize()
     oLettre = ord(lettre)
     
     if oLettre < ord('A') or oLettre > ord('Z'):
+        dico["message"] = "lettre invalide"
         return( False )
     return(lettre)
 
@@ -35,16 +37,16 @@ def askLettre(lettreList, lettre, dico):
     Demande a l'utilisateur une lettre jusuqu'a se qu'elle soit valide
     return : la lettre valide en majuscule
     """
-    lettre = valideLettre(lettre)
+    lettre = valideLettre(lettre, dico)
 
-    if  lettre != False and usedLettre(lettre, lettreList) == False:
+    if  lettre != False and usedLettre(lettre, lettreList, dico) == False:
         lettreList.append(lettre)
         checkPresence(lettre, dico)
 
 
-def  usedLettre(lettre, lettreList):
+def  usedLettre(lettre, lettreList, dico):
     if lettre in lettreList :
-        print("cette lettre a deja ete choisie")
+        dico["message"] = "cette lettre a deja ete choisie"
         return(True)
     return(False)
     
@@ -62,7 +64,7 @@ def checkPresence(lettre, dico) :
             if word[i] == lettre:
                 dico["guesWord"] = addLettre(dico["guesWord"], lettre, i)
     else:
-        print("la lettre n'est pas dans le mot")
+        dico["message"] = "la lettre n'est pas dans le mot"
         dico["error"] += 1
 
     
