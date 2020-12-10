@@ -20,8 +20,10 @@ class fentre():
     
         #tkinter
         self.fen = Tk()
-        self.valideBut = Button( self.fen, text = "Proposer", command = lambda:self.change() )
-        self.champ = Entry( self.fen, textvariable = "oui")
+        self.valideBut = Button( self.fen, text = "Proposer", command = lambda : self.change() )
+        self.fatal = Button( self.fen, text = "tricher", command = lambda : self.fatalEnd() )
+        
+        self.champ = Entry( self.fen, textvariable = "non")
         
         self.gWordAff = Label( self.fen, text = adaptGuesWord( self.dico["guesWord"] ) )
         self.message =Label( self.fen, text = "Tapez une lettre")
@@ -37,8 +39,10 @@ class fentre():
         
         self.valideBut.grid(row = 2, column = 1)
         self.champ.grid(row = 2, column = 2)
+        self.champ.focus_set()
         
         self.message.grid(row= 3, column = 2)
+        self.fatal.grid(row= 3, column = 1)
         
         self.can.create_image(0,0,anchor="nw", image=self.img)
         self.can.grid(row = 1, column = 3, rowspan= 3)
@@ -64,6 +68,12 @@ class fentre():
     def end(self):
         self.dico["message"] = "desoler c'est perdu, le mots etait: " + self.dico["word"]
         self.valideBut.destroy()
+        
+    def fatalEnd(self):
+        self.dico["message"] = "Che"
+        self.message.config( text = self.dico["message"] )
+        self.valideBut.destroy()
+        
         
          
          

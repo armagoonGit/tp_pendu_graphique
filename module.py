@@ -4,7 +4,8 @@
 que fait : fichier module du projet pendu avec interface
 qui : FOËX Vick 
 quand : 10/12/2020
-que reste a faire: non
+que reste a faire: la fct qui genere le mot avec les '_' focntione mal 
+                    et si le mot a pls foit sa letre de depart elles ne serons pas afficher
     
 """
 
