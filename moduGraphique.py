@@ -27,24 +27,27 @@ class fentre():
 
         
     def go(self): #mise en place au debut du programe
+        self.valideBut.grid(row = 1)
+        self.champ.grid(row = 2)
+        self.gWordAff.grid(row = 3)
+
         self.can.create_image(0,0,anchor="nw", image=self.img)
-        self.can.pack(side="right")
-        self.valideBut.pack(side="top")
-        self.champ.pack(side="top")
-        self.gWordAff.pack(side="top")
+        self.can.grid(row = 1, column = 2, rowspan= 3)
+
 
         self.fen.mainloop()
 
     def change(self): #actualisation qd on soument une lettre
-
          askLettre(self.lettreList, self.champ.get() , self.dico)
-         print(self.dico)
-         
-         self.img = PhotoImage(file="image/bonhomme" + str(self.dico["error"]) +".gif")
-         self.gWordAff.config(image=self.img)
-
          
          self.gWordAff.config(text=self.dico["guesWord"])
+         
+         self.can.delete("all")
+         self.img = PhotoImage(file="image/bonhomme" + str(self.dico["error"]) +".gif")
+         self.item = self.can.create_image(0,0,anchor="nw", image=self.img)
+
+         
+         
          
          
          
