@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 
-que fait : fichier qui gere les mechaniques du projet pendu sans interface
+que fait : fichier qui gere les mechaniques du projet pendu avec interface
 qui : FOËX Vick 
-quand : 3/12/2020
+quand : 10/12/2020
 que reste a faire : 
     
 """
 
-from module import addLettre, printGuesWord
+from module import addLettre
 
 
 def valideLettre(lettre,dico):
@@ -34,8 +34,7 @@ def valideLettre(lettre,dico):
 
 def askLettre(lettreList, lettre, dico):
     """
-    Demande a l'utilisateur une lettre jusuqu'a se qu'elle soit valide
-    return : la lettre valide en majuscule
+    valide la letrre et lance la suite du programme
     """
     lettre = valideLettre(lettre, dico)
 
@@ -52,9 +51,9 @@ def  usedLettre(lettre, lettreList, dico):
     
 def checkPresence(lettre, dico) :
     """
-    Verifie que la lettre est presente' dans le mot, la remplace si oui
-    sinon affiche un message.
-    Return : le mot a deviner avec ses nouvelle lettre si besoin
+    Verifie que la lettre est presente dans le mot, la remplace si oui
+    sinon stock un message.
+    strock ausis le nouveau mot
     """
     word = dico["word"]
 
@@ -62,6 +61,7 @@ def checkPresence(lettre, dico) :
     if lettre in word :
         for i in range( len( word ) ):
             if word[i] == lettre:
+                dico["message"] = "bien jouer !"
                 dico["guesWord"] = addLettre(dico["guesWord"], lettre, i)
     else:
         dico["message"] = "la lettre n'est pas dans le mot"
@@ -76,28 +76,5 @@ def genWordUnder(word):
     
     lenWord = len( word )
     guesWord = word[0] + '_'*(lenWord - 1)
-    printGuesWord(guesWord)
-    return(guesWord)
-
-def stopGame(guesWord):
-    """
-    Return false si le mot n'est pas encore devinr entierement
-    Sinon return true
-    """
-    if '_' in guesWord:
-        return(False)
-    return(True)
-
-def endGame(guesWord, nbTurn, word):
-    """
-    Verifie en fin de partie si le joueur a trouve le mot ou non
-    """
-    if stopGame(guesWord) == True :
-        print("youplaOup bravo c'est gagner")
-        addScore(word, nbTurn)
-    else :
-        print("desoler mais c'est perdu")
-        
     
-                
-
+    return(guesWord)

@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-
-que fait : fichier module du projet pendu sans interface
+que fait : fichier module du projet pendu avec interface
 qui : FOËX Vick 
-quand : 3/12/2020
-que reste a faire : capitalize le mot return 
+quand : 10/12/2020
+que reste a faire: non
     
 """
 
@@ -69,15 +68,14 @@ def addLettre(guesWord, lettre, index):
     """
     concatenation d'une str pour changer un char a l'index demander
     """
-    
     guesWord = guesWord[:index] + lettre + guesWord[index + 1:]
     return(guesWord)
     
-def printGuesWord(guesWord):
-    print("avancer des travaux: ")
-    for char in guesWord :
-        print( char , end = ' ')
-    print('\n')
+def adaptGuesWord(guesWord):
+    new = ""
+    for l in guesWord:
+        new += l + " "
+    return(new)
 
 
     
